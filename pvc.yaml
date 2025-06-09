@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apache-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce # Significa que pode ser montado por um único nó em modo leitura/escrita
+  resources:
+    requests:
+      storage: 1Gi # Solicita 1 Gigabyte de armazenamento
+  storageClassName: local-path # O K3s já tem este storageClass padrão

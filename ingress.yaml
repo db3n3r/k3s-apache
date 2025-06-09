@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-apache-app-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false" # Desabilitar redirecionamento HTTPS se não usar SSL agora
+    # traefik.ingress.kubernetes.io/router.entrypoints: web # Opcional: Garante que use a porta web (80)
+spec:
+  rules:
+  - host: myapp.local # Opcional: Defina um nome de host. Se não usar, ele responde a qualquer host.
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-apache-app-service # Nome do Service que criamos
+            port:
+              number: 80 # Porta do Service que queremos rotear

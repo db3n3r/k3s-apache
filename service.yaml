@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-apache-app-service
+spec:
+  selector:
+    app: my-apache-app # Deve corresponder ao label do deployment
+  ports:
+    - protocol: TCP
+      port: 80 # Porta que o service expõe
+      targetPort: 80 # Porta que o container está ouvindo (do Dockerfile)
+      nodePort: 30000 # Opcional: define uma porta específica no nó. Deve ser entre 30000-32767
+  type: NodePort # Tipo de service para expor em uma porta do nó
